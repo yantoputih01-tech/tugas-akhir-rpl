@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier League Hub — Liga Inggris Resmi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        pl: {
+                            purple: '#37003c',
+                            dark: '#240028',
+                            neon: '#00ff87',
+                            cyan: '#04f5ff',
+                            magenta: '#ff2882',
+                            light: '#f5f2f6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-pl-light text-pl-purple antialiased selection:bg-pl-neon selection:text-pl-purple">
+
+    <header class="sticky top-0 z-40 bg-pl-purple text-white shadow-xl border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-pl-neon via-pl-cyan to-pl-magenta p-0.5 shadow-lg group-hover:scale-105 transition-transform">
+                        <div class="w-full h-full bg-pl-purple rounded-[14px] flex items-center justify-center">
+                            <svg class="w-7 h-7 text-pl-neon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 20L24 12L32 18L40 12L46 20H18Z" fill="#00ff87"/>
+                                <path d="M16 24H48L45 44L32 54L19 44L16 24Z" stroke="#04f5ff" stroke-width="3" fill="#37003c"/>
+                                <circle cx="26" cy="33" r="2.5" fill="#00ff87"/>
+                                <circle cx="38" cy="33" r="2.5" fill="#00ff87"/>
+                                <path d="M27 42L32 45L37 42" stroke="#ff2882" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="font-black text-xl tracking-tight text-white block leading-none">PREMIER</span>
+                        <span class="font-extrabold text-sm tracking-[0.22em] text-pl-neon block mt-0.5">LEAGUE</span>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#jadwal" class="text-sm font-bold text-white/90 hover:text-pl-neon transition-colors">Jadwal & Hasil</a>
+                    <a href="#klasemen" class="text-sm font-bold text-white/90 hover:text-pl-neon transition-colors">Klasemen</a>
+                    <a href="#statistik" class="text-sm font-bold text-white/90 hover:text-pl-neon transition-colors">Statistik Pemain</a>
+                    <a href="#berita" class="text-sm font-bold text-white/90 hover:text-pl-neon transition-colors">Berita & Sorotan</a>
+                </nav>
+
+                <div class="hidden md:flex items-center gap-3">
+                    <a href="#klasemen" class="px-5 py-2.5 rounded-xl bg-pl-neon hover:bg-pl-cyan text-pl-purple text-sm font-extrabold transition-all shadow-md">
+                        Puncak Klasemen
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" type="button" class="md:hidden p-2.5 rounded-xl text-white hover:bg-white/10 focus:outline-none" aria-label="Buka menu navigasi">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-pl-dark border-t border-white/10 px-4 pt-3 pb-6 space-y-2 shadow-2xl">
+            <a href="#jadwal" class="mobile-link block px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10 hover:text-pl-neon">Jadwal & Hasil</a>
+            <a href="#klasemen" class="mobile-link block px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10 hover:text-pl-neon">Klasemen</a>
+            <a href="#statistik" class="mobile-link block px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10 hover:text-pl-neon">Statistik Pemain</a>
+            <a href="#berita" class="mobile-link block px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10 hover:text-pl-neon">Berita & Sorotan</a>
+            <div class="pt-2">
+                <a href="#klasemen" class="mobile-link block w-full text-center px-5 py-3 rounded-xl bg-pl-neon text-pl-purple font-extrabold">
+                    Lihat Klasemen Lengkap
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="relative overflow-hidden bg-pl-purple text-white py-16 lg:py-24">
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-pl-magenta/30 blur-3xl"></div>
+                <div class="absolute bottom-0 left-10 w-80 h-80 rounded-full bg-pl-cyan/20 blur-3xl"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-pl-neon/10 blur-3xl"></div>
+            </div>
+
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-pl-neon/40 text-pl-neon text-xs sm:text-sm font-extrabold uppercase tracking-wider mb-6">
+                            <span class="w-2 h-2 rounded-full bg-pl-neon animate-ping"></span> Pekan ke-12 • Perebutan Takhta Liga
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.08] tracking-tight mb-6">
+                            Setan Merah Kokoh di <span class="text-transparent bg-clip-text bg-gradient-to-r from-pl-neon via-pl-cyan to-pl-magenta">Puncak Klasemen</span>
+                        </h1>
+                        <p class="text-base sm:text-lg text-white/80 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            Kemenangan krusial di Old Trafford mengantarkan Manchester United merebut posisi nomor satu Premier League musim ini, mengungguli Liverpool dan Manchester City dalam persaingan gelar juara.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="#klasemen" class="px-8 py-4 rounded-2xl bg-pl-neon hover:bg-pl-cyan text-pl-purple font-black text-sm uppercase tracking-wider shadow-lg shadow-pl-neon/25 transition-all text-center">
+                                Cek Klasemen Nomor 1
+                            </a>
+                            <a href="#jadwal" class="px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-sm uppercase tracking-wider transition-all text-center">
+                                Jadwal & Skor Terkini
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="rounded-3xl bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl border border-white/20 p-6 sm:p-8 shadow-2xl">
+                            <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-pl-cyan mb-6">
+                                <span>Laga Sorotan Pekan Ini</span>
+                                <span class="px-3 py-1 rounded-full bg-pl-magenta text-white">Super Sunday</span>
+                            </div>
+
+                            <div class="flex items-center justify-between gap-4 my-6">
+                                <div class="flex-1 text-center">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-red-600 flex items-center justify-center font-black text-xl sm:text-2xl text-white shadow-lg border-2 border-amber-400">
+                                        MUN
+                                    </div>
+                                    <p class="font-extrabold text-sm sm:text-base mt-3">Man Utd</p>
+                                    <span class="text-[11px] font-bold text-pl-neon">#1 Klasemen</span>
+                                </div>
+
+                                <div class="text-center px-2">
+                                    <div class="px-4 py-2 rounded-2xl bg-pl-dark border border-white/15 font-black text-2xl sm:text-3xl tracking-widest text-pl-neon">
+                                        3 - 1
+                                    </div>
+                                    <span class="text-[11px] font-bold text-white/70 uppercase mt-2 block">Full Time</span>
+                                </div>
+
+                                <div class="flex-1 text-center">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-red-700 flex items-center justify-center font-black text-xl sm:text-2xl text-white shadow-lg border-2 border-white/30">
+                                        ARS
+                                    </div>
+                                    <p class="font-extrabold text-sm sm:text-base mt-3">Arsenal</p>
+                                    <span class="text-[11px] font-bold text-white/60">#4 Klasemen</span>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-white/15 pt-4 mt-4 flex items-center justify-between text-xs text-white/80">
+                                <span>Stadion: Old Trafford</span>
+                                <span class="text-pl-neon font-bold">Penonton: 74.310</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="jadwal" class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                <div>
+                    <span class="text-xs font-black uppercase tracking-[0.2em] text-pl-magenta">Matchweek 12</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-pl-purple mt-1">Jadwal & Hasil Pertandingan</h2>
+                </div>
+
+                <div class="inline-flex p-1.5 rounded-2xl bg-white shadow-sm border border-pl-purple/10 self-start">
+                    <button type="button" data-filter="semua" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-pl-purple text-pl-neon transition-all">
+                        Semua Laga
+                    </button>
+                    <button type="button" data-filter="selesai" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-pl-purple/70 hover:text-pl-purple transition-all">
+                        Hasil Selesai
+                    </button>
+                    <button type="button" data-filter="mendatang" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-pl-purple/70 hover:text-pl-purple transition-all">
+                        Jadwal Berikutnya
+                    </button>
+                </div>
+            </div>
+
+            <div id="matches-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div data-status="selesai" class="match-card bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl border border-pl-purple/10 transition-all">
+                    <div class="flex justify-between items-center text-xs font-bold mb-4">
+                        <span class="text-pl-purple/60">Sabtu, 21 Nov</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-pl-purple text-pl-neon font-extrabold">FT</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-red-600 text-white font-black text-xs flex items-center justify-center">MUN</span>
+                                <span class="font-extrabold text-pl-purple">Manchester United</span>
+                            </div>
+                            <span class="font-black text-lg text-pl-purple">3</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-red-700 text-white font-black text-xs flex items-center justify-center">ARS</span>
+                                <span class="font-semibold text-pl-purple/80">Arsenal</span>
+                            </div>
+                            <span class="font-bold text-lg text-pl-purple/70">1</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-pl-purple/10 text-xs text-pl-purple/60 flex justify-between">
+                        <span>Old Trafford</span>
+                        <span class="font-bold text-pl-magenta">Highlight Tersedia</span>
+                    </div>
+                </div>
+
+                <div data-status="selesai" class="match-card bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl border border-pl-purple/10 transition-all">
+                    <div class="flex justify-between items-center text-xs font-bold mb-4">
+                        <span class="text-pl-purple/60">Sabtu, 21 Nov</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-pl-purple text-pl-neon font-extrabold">FT</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-red-800 text-white font-black text-xs flex items-center justify-center">LIV</span>
+                                <span class="font-extrabold text-pl-purple">Liverpool</span>
+                            </div>
+                            <span class="font-black text-lg text-pl-purple">2</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-blue-700 text-white font-black text-xs flex items-center justify-center">CHE</span>
+                                <span class="font-semibold text-pl-purple/80">Chelsea</span>
+                            </div>
+                            <span class="font-bold text-lg text-pl-purple/70">2</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-pl-purple/10 text-xs text-pl-purple/60 flex justify-between">
+                        <span>Anfield</span>
+                        <span class="font-bold text-pl-magenta">Highlight Tersedia</span>
+                    </div>
+                </div>
+
+                <div data-status="selesai" class="match-card bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl border border-pl-purple/10 transition-all">
+                    <div class="flex justify-between items-center text-xs font-bold mb-4">
+                        <span class="text-pl-purple/60">Sabtu, 21 Nov</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-pl-purple text-pl-neon font-extrabold">FT</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-sky-500 text-white font-black text-xs flex items-center justify-center">MCI</span>
+                                <span class="font-extrabold text-pl-purple">Manchester City</span>
+                            </div>
+                            <span class="font-black text-lg text-pl-purple">2</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-slate-800 text-white font-black text-xs flex items-center justify-center">TOT</span>
+                                <span class="font-semibold text-pl-purple/80">Tottenham Hotspur</span>
+                            </div>
+                            <span class="font-bold text-lg text-pl-purple/70">0</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-pl-purple/10 text-xs text-pl-purple/60 flex justify-between">
+                        <span>Etihad Stadium</span>
+                        <span class="font-bold text-pl-magenta">Highlight Tersedia</span>
+                    </div>
+                </div>
+
+                <div data-status="mendatang" class="match-card bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl border border-pl-purple/10 transition-all">
+                    <div class="flex justify-between items-center text-xs font-bold mb-4">
+                        <span class="text-pl-purple/60">Minggu, 22 Nov</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-pl-cyan/25 text-pl-purple font-extrabold">21:00 WIB</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-maroon-700 bg-rose-900 text-white font-black text-xs flex items-center justify-center">AVL</span>
+                                <span class="font-bold text-pl-purple">Aston Villa</span>
+                            </div>
+                            <span class="text-xs font-bold text-pl-purple/50">VS</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-neutral-900 text-white font-black text-xs flex items-center justify-center">NEW</span>
+                                <span class="font-bold text-pl-purple">Newcastle United</span>
+                            </div>
+                            <span class="text-xs font-bold text-pl-purple/50">LIVE</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-pl-purple/10 text-xs text-pl-purple/60 flex justify-between">
+                        <span>Villa Park</span>
+                        <span class="font-bold text-pl-purple">Pekan ke-12</span>
+                    </div>
+                </div>
+
+                <div data-status="mendatang" class="match-card bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl border border-pl-purple/10 transition-all">
+                    <div class="flex justify-between items-center text-xs font-bold mb-4">
+                        <span class="text-pl-purple/60">Minggu, 22 Nov</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-pl-cyan/25 text-pl-purple font-extrabold">23:30 WIB</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-blue-600 text-white font-black text-xs flex items-center justify-center">BHA</span>
+                                <span class="font-bold text-pl-purple">Brighton</span>
+                            </div>
+                            <span class="text-xs font-bold text-pl-purple/50">VS</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-rose-800 text-white font-black text-xs flex items-center justify-center">WHU</span>
+                                <span class="font-bold text-pl-purple">West Ham United</span>
+                            </div>
+                            <span class="text-xs font-bold text-pl-purple/50">LIVE</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-pl-purple/10 text-xs text-pl-purple/60 flex justify-between">
+                        <span>Amex Stadium</span>
+                        <span class="font-bold text-pl-purple">Pekan ke-12</span>
+                    </div>
+                </div>
+
+                <div data-status="mendatang" class="match-card bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl border border-pl-purple/10 transition-all">
+                    <div class="flex justify-between items-center text-xs font-bold mb-4">
+                        <span class="text-pl-purple/60">Selasa, 24 Nov</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-pl-cyan/25 text-pl-purple font-extrabold">03:00 WIB</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-amber-500 text-pl-purple font-black text-xs flex items-center justify-center">WOL</span>
+                                <span class="font-bold text-pl-purple">Wolverhampton</span>
+                            </div>
+                            <span class="text-xs font-bold text-pl-purple/50">VS</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-xl bg-blue-800 text-white font-black text-xs flex items-center justify-center">EVE</span>
+                                <span class="font-bold text-pl-purple">Everton</span>
+                            </div>
+                            <span class="text-xs font-bold text-pl-purple/50">LIVE</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-pl-purple/10 text-xs text-pl-purple/60 flex justify-between">
+                        <span>Molineux Stadium</span>
+                        <span class="font-bold text-pl-purple">Pekan ke-12</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="klasemen" class="py-16 lg:py-24 bg-white border-y border-pl-purple/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+                    <div>
+                        <span class="text-xs font-black uppercase tracking-[0.2em] text-pl-magenta">Musim 2026/27</span>
+                        <h2 class="text-3xl sm:text-4xl font-black text-pl-purple mt-1">Klasemen Sementara Premier League</h2>
+                    </div>
+                    <div class="flex flex-wrap gap-3 text-xs font-bold">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-pl-neon/20 text-pl-purple">
+                            <span class="w-2.5 h-2.5 rounded-full bg-pl-neon"></span> Liga Champions (1-4)
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-pl-cyan/25 text-pl-purple">
+                            <span class="w-2.5 h-2.5 rounded-full bg-pl-cyan"></span> Liga Europa (5)
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-pl-magenta/15 text-pl-magenta">
+                            <span class="w-2.5 h-2.5 rounded-full bg-pl-magenta"></span> Degradasi (18-20)
+                        </span>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto rounded-3xl border border-pl-purple/15 shadow-lg">
+                    <table class="w-full text-left border-collapse min-w-[700px]">
+                        <thead>
+                            <tr class="bg-pl-purple text-white text-xs font-extrabold uppercase tracking-wider">
+                                <th class="py-4 px-5">Pos</th>
+                                <th class="py-4 px-5">Klub</th>
+                                <th class="py-4 px-4 text-center">Main</th>
+                                <th class="py-4 px-4 text-center">M</th>
+                                <th class="py-4 px-4 text-center">S</th>
+                                <th class="py-4 px-4 text-center">K</th>
+                                <th class="py-4 px-4 text-center">SG</th>
+                                <th class="py-4 px-5 text-center">5 Laga Terakhir</th>
+                                <th class="py-4 px-5 text-center text-pl-neon">Poin</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-pl-purple/10 text-sm">
+                            <tr class="bg-pl-neon/10 hover:bg-pl-neon/20 transition-colors border-l-4 border-pl-neon">
+                                <td class="py-4 px-5 font-black text-pl-purple">1</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-xl bg-red-600 text-white font-black text-xs flex items-center justify-center shadow">MUN</span>
+                                        <div>
+                                            <span class="font-black text-pl-purple">Manchester United</span>
+                                            <span class="ml-2 px-2 py-0.5 rounded-md bg-pl-purple text-pl-neon text-[10px] font-extrabold uppercase">Puncak</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-center font-semibold">12</td>
+                                <td class="py-4 px-4 text-center font-semibold">10</td>
+                                <td class="py-4 px-4 text-center font-semibold">1</td>
+                                <td class="py-4 px-4 text-center font-semibold">1</td>
+                                <td class="py-4 px-4 text-center font-bold text-emerald-700">+19</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex justify-center gap-1 text-[10px] font-black text-white">
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-slate-400 flex items-center justify-center">S</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-center font-black text-lg text-pl-purple">31</td>
+                            </tr>
+
+                            <tr class="hover:bg-pl-light/70 transition-colors border-l-4 border-pl-neon">
+                                <td class="py-4 px-5 font-extrabold text-pl-purple">2</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-xl bg-red-800 text-white font-black text-xs flex items-center justify-center">LIV</span>
+                                        <span class="font-bold text-pl-purple">Liverpool</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-center">12</td>
+                                <td class="py-4 px-4 text-center">9</td>
+                                <td class="py-4 px-4 text-center">2</td>
+                                <td class="py-4 px-4 text-center">1</td>
+                                <td class="py-4 px-4 text-center font-bold text-emerald-700">+16</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex justify-center gap-1 text-[10px] font-black text-white">
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-slate-400 flex items-center justify-center">S</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-slate-400 flex items-center justify-center">S</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-center font-black text-base text-pl-purple">29</td>
+                            </tr>
+
+                            <tr class="hover:bg-pl-light/70 transition-colors border-l-4 border-pl-neon">
+                                <td class="py-4 px-5 font-extrabold text-pl-purple">3</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-xl bg-sky-500 text-white font-black text-xs flex items-center justify-center">MCI</span>
+                                        <span class="font-bold text-pl-purple">Manchester City</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-center">12</td>
+                                <td class="py-4 px-4 text-center">8</td>
+                                <td class="py-4 px-4 text-center">2</td>
+                                <td class="py-4 px-4 text-center">2</td>
+                                <td class="py-4 px-4 text-center font-bold text-emerald-700">+14</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex justify-center gap-1 text-[10px] font-black text-white">
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-pl-magenta flex items-center justify-center">K</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-center font-black text-base text-pl-purple">26</td>
+                            </tr>
+
+                            <tr class="hover:bg-pl-light/70 transition-colors border-l-4 border-pl-neon">
+                                <td class="py-4 px-5 font-extrabold text-pl-purple">4</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-xl bg-red-700 text-white font-black text-xs flex items-center justify-center">ARS</span>
+                                        <span class="font-bold text-pl-purple">Arsenal</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-center">12</td>
+                                <td class="py-4 px-4 text-center">7</td>
+                                <td class="py-4 px-4 text-center">3</td>
+                                <td class="py-4 px-4 text-center">2</td>
+                                <td class="py-4 px-4 text-center font-bold text-emerald-700">+10</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex justify-center gap-1 text-[10px] font-black text-white">
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-slate-400 flex items-center justify-center">S</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-pl-magenta flex items-center justify-center">K</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-center font-black text-base text-pl-purple">24</td>
+                            </tr>
+
+                            <tr class="hover:bg-pl-light/70 transition-colors border-l-4 border-pl-cyan">
+                                <td class="py-4 px-5 font-extrabold text-pl-purple">5</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-xl bg-blue-700 text-white font-black text-xs flex items-center justify-center">CHE</span>
+                                        <span class="font-bold text-pl-purple">Chelsea</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-center">12</td>
+                                <td class="py-4 px-4 text-center">6</td>
+                                <td class="py-4 px-4 text-center">4</td>
+                                <td class="py-4 px-4 text-center">2</td>
+                                <td class="py-4 px-4 text-center font-bold text-emerald-700">+8</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex justify-center gap-1 text-[10px] font-black text-white">
+                                        <span class="w-5 h-5 rounded-md bg-slate-400 flex items-center justify-center">S</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-slate-400 flex items-center justify-center">S</span>
+                                        <span class="w-5 h-5 rounded-md bg-slate-400 flex items-center justify-center">S</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-center font-black text-base text-pl-purple">22</td>
+                            </tr>
+
+                            <tr class="hover:bg-pl-light/70 transition-colors border-l-4 border-transparent">
+                                <td class="py-4 px-5 font-extrabold text-pl-purple">6</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-xl bg-rose-900 text-white font-black text-xs flex items-center justify-center">AVL</span>
+                                        <span class="font-bold text-pl-purple">Aston Villa</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-center">12</td>
+                                <td class="py-4 px-4 text-center">6</td>
+                                <td class="py-4 px-4 text-center">3</td>
+                                <td class="py-4 px-4 text-center">3</td>
+                                <td class="py-4 px-4 text-center font-bold text-emerald-700">+4</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex justify-center gap-1 text-[10px] font-black text-white">
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-pl-magenta flex items-center justify-center">K</span>
+                                        <span class="w-5 h-5 rounded-md bg-slate-400 flex items-center justify-center">S</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                        <span class="w-5 h-5 rounded-md bg-emerald-500 flex items-center justify-center">M</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-center font-black text-base text-pl-purple">21</td>
+                            </tr>
+
+                            <tr class="hover:bg-pl-light/70 transition-colors border-l-4 border-pl-magenta">
+                                <td class="py-4 px-5 font-extrabold text-pl-magenta">18</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-8 h-8 rounded-xl bg-red-600/80 text-white font-black text-xs flex items-center justify-center">SOU</span>
+                                        <span class="font-bold text-pl-purple">Southampton</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4 text-center">12</td>
+                                <td class="py-4 px-4 text-center">2</td>
+                                <td class="py-4 px-4 text-center">2</td>
+                                <td class="py-4 px-4 text-center">8</td>
+                                <td class="py-4 px-4 text-center font-bold text-pl-magenta">-14</td>
+                                <td class="py-4 px-5">
+                                    <div class="flex justify-center gap-1 text-[10px] font-black text-white">
+                                        <span class="w-5 h-5 rounded-md bg-pl-magenta flex items-center justify-center">K</span>
+                                        <span class="w-5 h-5 rounded-md bg-pl-magenta flex items-center justify-center">K</span>
+                                        <span class="w-5 h-5 rounded-md bg-slate-400 flex items-center justify-center">S</span>
+                                        <span class="w-5 h-5 rounded-md bg-pl-magenta flex items-center justify-center">K</span>
+                                        <span class="w-5 h-5 rounded-md bg-pl-magenta flex items-center justify-center">K</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-center font-black text-base text-pl-magenta">8</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="statistik" class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <span class="text-xs font-black uppercase tracking-[0.2em] text-pl-magenta">Performa Individu</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-pl-purple mt-1">Statistik Top Skor & Top Assist</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-pl-purple/10">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-black text-pl-purple">Sepatu Emas (Top Skor)</h3>
+                        <span class="px-3 py-1 rounded-full bg-pl-purple text-pl-neon text-xs font-extrabold">Gol</span>
+                    </div>
+
+                    <div class="rounded-2xl bg-gradient-to-r from-pl-purple to-pl-dark text-white p-5 mb-5 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-pl-neon">#1 Pencetak Gol</span>
+                            <h4 class="text-2xl font-black mt-1">Bruno Fernandes</h4>
+                            <p class="text-xs text-white/75 font-semibold">Manchester United • Gelandang</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-4xl font-black text-pl-neon">12</span>
+                            <span class="block text-[11px] uppercase tracking-wider text-white/70">Gol</span>
+                        </div>
+                    </div>
+
+                    <div class="divide-y divide-pl-purple/10 text-sm">
+                        <div class="py-3.5 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="font-black text-pl-purple/50 w-5">2</span>
+                                <div>
+                                    <p class="font-extrabold text-pl-purple">Erling Haaland</p>
+                                    <p class="text-xs text-pl-purple/60">Manchester City</p>
+                                </div>
+                            </div>
+                            <span class="font-black text-lg text-pl-purple">11</span>
+                        </div>
+                        <div class="py-3.5 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="font-black text-pl-purple/50 w-5">3</span>
+                                <div>
+                                    <p class="font-extrabold text-pl-purple">Mohamed Salah</p>
+                                    <p class="text-xs text-pl-purple/60">Liverpool</p>
+                                </div>
+                            </div>
+                            <span class="font-black text-lg text-pl-purple">9</span>
+                        </div>
+                        <div class="py-3.5 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="font-black text-pl-purple/50 w-5">4</span>
+                                <div>
+                                    <p class="font-extrabold text-pl-purple">Cole Palmer</p>
+                                    <p class="text-xs text-pl-purple/60">Chelsea</p>
+                                </div>
+                            </div>
+                            <span class="font-black text-lg text-pl-purple">8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-pl-purple/10">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-black text-pl-purple">Playmaker Terbaik (Top Assist)</h3>
+                        <span class="px-3 py-1 rounded-full bg-pl-cyan/30 text-pl-purple text-xs font-extrabold">Assist</span>
+                    </div>
+
+                    <div class="rounded-2xl bg-gradient-to-r from-pl-purple to-pl-dark text-white p-5 mb-5 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-pl-cyan">#1 Raja Assist</span>
+                            <h4 class="text-2xl font-black mt-1">Amad Diallo</h4>
+                            <p class="text-xs text-white/75 font-semibold">Manchester United • Penyerang Sayap</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-4xl font-black text-pl-cyan">9</span>
+                            <span class="block text-[11px] uppercase tracking-wider text-white/70">Assist</span>
+                        </div>
+                    </div>
+
+                    <div class="divide-y divide-pl-purple/10 text-sm">
+                        <div class="py-3.5 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="font-black text-pl-purple/50 w-5">2</span>
+                                <div>
+                                    <p class="font-extrabold text-pl-purple">Bukayo Saka</p>
+                                    <p class="text-xs text-pl-purple/60">Arsenal</p>
+                                </div>
+                            </div>
+                            <span class="font-black text-lg text-pl-purple">8</span>
+                        </div>
+                        <div class="py-3.5 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="font-black text-pl-purple/50 w-5">3</span>
+                                <div>
+                                    <p class="font-extrabold text-pl-purple">Kevin De Bruyne</p>
+                                    <p class="text-xs text-pl-purple/60">Manchester City</p>
+                                </div>
+                            </div>
+                            <span class="font-black text-lg text-pl-purple">7</span>
+                        </div>
+                        <div class="py-3.5 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="font-black text-pl-purple/50 w-5">4</span>
+                                <div>
+                                    <p class="font-extrabold text-pl-purple">Trent Alexander-Arnold</p>
+                                    <p class="text-xs text-pl-purple/60">Liverpool</p>
+                                </div>
+                            </div>
+                            <span class="font-black text-lg text-pl-purple">6</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="berita" class="py-16 lg:py-24 bg-pl-purple text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+                    <div>
+                        <span class="text-xs font-black uppercase tracking-[0.2em] text-pl-neon">Sorotan Liga</span>
+                        <h2 class="text-3xl sm:text-4xl font-black mt-1">Berita & Analisis Terbaru</h2>
+                    </div>
+                    <a href="#klasemen" class="text-sm font-extrabold text-pl-cyan hover:text-pl-neon transition-colors">
+                        Lihat Rekap Pekan Ini →
+                    </a>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <article class="bg-pl-dark/90 rounded-3xl overflow-hidden border border-white/10 flex flex-col justify-between group">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden bg-pl-purple">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=800&q=80" 
+                                    alt="Atmosfer stadion Liga Inggris malam hari"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/800x500/37003c/00ff87?text=Old+Trafford+Glory';"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                >
+                                <span class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-pl-neon text-pl-purple text-xs font-black uppercase">
+                                    Laporan Laga
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-extrabold text-lg text-white mb-2 group-hover:text-pl-neon transition-colors">
+                                    Taktik Agresif Bawa Manchester United Kuasai Takhta Klasemen
+                                </h3>
+                                <p class="text-sm text-white/70 leading-relaxed">
+                                    Transisi cepat lini tengah membuat Setan Merah tak terbendung dan mengoleksi 31 poin dari 12 pertandingan perdana.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 text-xs font-bold text-pl-cyan">
+                            2 Jam Lalu • Analisis Taktik
+                        </div>
+                    </article>
+
+                    <article class="bg-pl-dark/90 rounded-3xl overflow-hidden border border-white/10 flex flex-col justify-between group">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden bg-pl-purple">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80" 
+                                    alt="Pertandingan sepak bola di stadion"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/800x500/37003c/04f5ff?text=Anfield+Thriller';"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                >
+                                <span class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-pl-cyan text-pl-purple text-xs font-black uppercase">
+                                    Sorotan Pekan
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-extrabold text-lg text-white mb-2 group-hover:text-pl-cyan transition-colors">
+                                    Drama Empat Gol di Anfield Tahan Laju Liverpool
+                                </h3>
+                                <p class="text-sm text-white/70 leading-relaxed">
+                                    Hasil imbang 2-2 kontra Chelsea membuat Liverpool harus rela merelakan posisi puncak klasemen direbut Manchester United.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 text-xs font-bold text-pl-cyan">
+                            4 Jam Lalu • Berita Utama
+                        </div>
+                    </article>
+
+                    <article class="bg-pl-dark/90 rounded-3xl overflow-hidden border border-white/10 flex flex-col justify-between group">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden bg-pl-purple">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80" 
+                                    alt="Bola resmi di lapangan hijau"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/800x500/37003c/ff2882?text=Fantasy+Premier+League';"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                >
+                                <span class="absolute top-3 left-3 px-3 py-1 rounded-xl bg-pl-magenta text-white text-xs font-black uppercase">
+                                    FPL Update
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-extrabold text-lg text-white mb-2 group-hover:text-pl-magenta transition-colors">
+                                    Bruno Fernandes & Amad Diallo Jadi Kapten Wajib FPL Pekan 13
+                                </h3>
+                                <p class="text-sm text-white/70 leading-relaxed">
+                                    Konsistensi kontribusi gol dan assist duo Manchester United menjadikan keduanya aset paling diburu manajer Fantasy.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 text-xs font-bold text-pl-cyan">
+                            6 Jam Lalu • Fantasy League
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-pl-dark text-white/80 py-14 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="pb-10 mb-8 border-b border-white/10">
+                <p class="text-center text-xs font-extrabold uppercase tracking-[0.25em] text-pl-neon mb-6">Mitra Resmi Premier League</p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                    <div class="py-3 px-4 rounded-2xl bg-white/5 border border-white/10 font-black tracking-wider text-sm text-white">EA SPORTS FC</div>
+                    <div class="py-3 px-4 rounded-2xl bg-white/5 border border-white/10 font-black tracking-wider text-sm text-white">BARCLAYS</div>
+                    <div class="py-3 px-4 rounded-2xl bg-white/5 border border-white/10 font-black tracking-wider text-sm text-white">NIKE FLIGHT</div>
+                    <div class="py-3 px-4 rounded-2xl bg-white/5 border border-white/10 font-black tracking-wider text-sm text-white">HUBLOT</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/60">
+                <div class="flex items-center gap-2">
+                    <span class="font-black text-white text-sm">PREMIER LEAGUE HUB</span>
+                    <span>•</span>
+                    <span>&copy; 2026 Hak Cipta Dilindungi.</span>
+                </div>
+                <div class="flex gap-6 font-bold">
+                    <a href="#jadwal" class="hover:text-pl-neon transition-colors">Jadwal</a>
+                    <a href="#klasemen" class="hover:text-pl-neon transition-colors">Klasemen</a>
+                    <a href="#statistik" class="hover:text-pl-neon transition-colors">Statistik</a>
+                    <a href="#berita" class="hover:text-pl-neon transition-colors">Berita</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const matchCards = document.querySelectorAll('.match-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-pl-purple', 'text-pl-neon', 'font-extrabold');
+                    b.classList.add('text-pl-purple/70', 'font-bold');
+                });
+
+                btn.classList.add('bg-pl-purple', 'text-pl-neon', 'font-extrabold');
+                btn.classList.remove('text-pl-purple/70', 'font-bold');
+
+                const filterValue = btn.getAttribute('data-filter');
+                matchCards.forEach(card => {
+                    if (filterValue === 'semua' || card.getAttribute('data-status') === filterValue) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
